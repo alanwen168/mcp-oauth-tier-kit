@@ -74,6 +74,8 @@ class PolicyTests(unittest.TestCase):
         )
 
     def test_invalid_policy_is_rejected(self):
+        with self.assertRaises(TypeError):
+            ToolScopePolicy(public_tools="search_catalog")
         with self.assertRaises(ValueError):
             ToolScopePolicy(public_tools={"same"}, user_tools={"same": {"read"}})
         with self.assertRaises(ValueError):

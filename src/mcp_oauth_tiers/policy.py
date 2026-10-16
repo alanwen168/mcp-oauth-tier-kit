@@ -102,6 +102,8 @@ def visible_tool_metadata(
 
 
 def _tool_names(values: Iterable[str]) -> tuple[str, ...]:
+    if isinstance(values, str):
+        raise TypeError("tool names must be an iterable of strings, not one string")
     names = tuple(values)
     if any(not isinstance(name, str) or not name for name in names):
         raise ValueError("tool names must be non-empty strings")
